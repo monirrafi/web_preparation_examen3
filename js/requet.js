@@ -2,10 +2,6 @@ let listeProduits =  [];
 let listeClients = [];
 let listeCommandes = [];
 listeCommandes = tabCommandes['Source Data'];
-/*let listeTotal = [{"id":0,"valeur":"Tous"},{"id":1,"valeur":"1"},{"id":2,"valeur":"2"},
-                  {"id":3,"valeur":"3"},{"id":4,"valeur":"4"}
-                 ];*/
-
 let listeTotal = ["Tous","1","2","3","4"];
 
 let chargerTab = () => {
@@ -88,7 +84,7 @@ let calculerUnTotal = (no) => {
         <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm border-primary">
           <div class="card-header py-3 text-bg-primary border-primary">
-            <h4 class="my-0 fw-normal">${total}</h4>
+            <h4 class="my-0 fw-normal">Total du ${total}</h4>
           </div>
           <div class="card-body">
             <h1 class="card-title pricing-card-title">${somme.toFixed(2)}<small class="text-muted fw-light"> $</small></h1>
