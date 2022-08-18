@@ -52,16 +52,72 @@ let changerProduit = () => {
 
 
 }
+let calculerUnTotal = (no) => {
+        let somme=0.00;
+        let total;
+        if(no == 'Tous'){
+            for(let i =1;i<5;i++){
+                total = 'Qtr ' + i;
+                for(let commande of listeCommandes){
+                    let montant = commande[total]
+                    if(montant != undefined){
+                        montant = montant.substring(1);
+                        montant = montant.replace(',','');
+                        montant = parseFloat(montant);
+                        somme += montant;
+                        
+                    }
+                }
+
+            }
+            total = 'Tous'
+        }else{
+            total = 'Qtr ' + no;
+            for(let commande of listeCommandes){
+                let montant = commande[total]
+                if(montant != undefined){
+                    montant = montant.substring(1);
+                    montant = montant.replace(',','');
+                    montant = parseFloat(montant);
+                    somme += montant;
+                    
+                }
+            }
+        }
+        let contenuTable = `
+        <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+          <div class="card-header py-3 text-bg-primary border-primary">
+            <h4 class="my-0 fw-normal">${total}</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">${somme.toFixed(2)}<small class="text-muted fw-light"> $</small></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+            `;
+    return contenuTable;
+
+}
 let changerTotal = () => {
     let selTotal = document.getElementById('selTotal');
     let totalChoisi = listeTotal[selTotal.selectedIndex];
 
     if(totalChoisi == 'Tous'){
-        document.getElementById('contenu').innerHTML = listerCommandes(listeCommandes);
+        document.getElementById('contenu').innerHTML = calculerUnTotal('Tous');//listerCommandes(listeCommandes);
 
-    }else{
-        totalChoisi = 'Qtr ' + totalChoisi;
-        document.getElementById('contenu').innerHTML= listerCommandes(listerUnCle(totalChoisi,'totalChoisi'));
+    }else if(totalChoisi == '1'){
+        document.getElementById('contenu').innerHTML = calculerUnTotal('1');//listerCommandes(listeCommandes);
+
+    }else if(totalChoisi == '2'){
+        document.getElementById('contenu').innerHTML = calculerUnTotal('2');//listerCommandes(listeCommandes);
+
+    }else if(totalChoisi == '3'){
+        document.getElementById('contenu').innerHTML = calculerUnTotal('3');//listerCommandes(listeCommandes);
+
+    }else if(totalChoisi == '4'){
+        document.getElementById('contenu').innerHTML = calculerUnTotal('4');//listerCommandes(listeCommandes);
 
     }
 }
@@ -109,16 +165,6 @@ let entete = () => {
             `;
             return contenuTable;
     
-}
-let calculerUnTotal = (no) => {
-    let total = 'Qtr ' + no;
-    let somme=0;
-    for(let commande of listeCommandes){
-        let montant = commande[total]
-        if(montant != undefined){
-            montant = replace()
-        }
-    }
 }
 let listerCommandes = (liste) =>{
     let contenuTable = entete();
